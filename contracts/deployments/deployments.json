@@ -1,0 +1,10 @@
+{
+  "hardhat": {
+    "MockUSDC": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    "P2P": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+  },
+  "base-sepolia": {
+    "MockUSDC": "0x254Ff46538bf3C581435850F73D2f26011417a1C",
+    "P2P": "0x648eAcAa1C7FEbb06f9b682603fFC6d20b97450b"
+  }
+}
