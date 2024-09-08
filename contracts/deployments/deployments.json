@@ -6,5 +6,9 @@
   "base-sepolia": {
     "MockUSDC": "0x254Ff46538bf3C581435850F73D2f26011417a1C",
     "P2P": "0x648eAcAa1C7FEbb06f9b682603fFC6d20b97450b"
+  },
+  "kakarot-sepolia": {
+    "MockUSDC": "0x4289528361a1a12a673134Fc83b4185Cf46e7F0a",
+    "P2P": "0xF8147c98b6222970D1E1b145F321Df34D5Da07E0"
   }
 }

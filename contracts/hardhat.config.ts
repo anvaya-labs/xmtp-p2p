@@ -16,11 +16,25 @@ const config: HardhatUserConfig = {
       url: "https://sepolia.base.org",
       accounts: [process.env.PRIVATE_KEY as string],
     },
+    "kakarot-sepolia": {
+      url: "https://sepolia-rpc.kakarot.org",
+      accounts: [process.env.PRIVATE_KEY as string],
+    }
   },
   etherscan: {
     apiKey: {
-      baseSepolia: process.env.ETHERSCAN_API_KEY as string,
-    }
+      "kakarot-sepolia": "testnet/evm/1802203764"
+    },
+    customChains: [
+      {
+        network: "kakarot-sepolia",
+        chainId: 1802203764,
+        urls: {
+          apiURL: "https://api.routescan.io/v2/network/testnet/evm/1802203764_2/etherscan",
+          browserURL: "https://routescan.io"
+        }
+      }
+    ]
   }
 };
 
