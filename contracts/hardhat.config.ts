@@ -5,6 +5,7 @@ import { config as dotenvConfig } from "dotenv";
 dotenvConfig();
 
 import "./tasks/deploy";
+import "./tasks/allowSpend";
 
 const config: HardhatUserConfig = {
   solidity: "0.8.24",
