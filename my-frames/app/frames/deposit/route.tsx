@@ -23,22 +23,12 @@ export const POST = frames(async (ctx) => {
     const parsedDepositAmount = 1000000 // 1 USDC
 
 
-    // const myCalldata = encodeFunctionData({
-    //     abi: myContractAbi,
-    //     functionName: functionName,
-    //     args: [orderId, parsedDepositAmount],
-    // });
-
-    // const publicClient = createPublicClient({
-    //     chain: baseSepolia,
-    //     transport: http(),
-    // });
 
     const data = encodeFunctionData({
         abi: XmtpP2PAbi.abi,
         functionName,
         args: [orderId, parsedDepositAmount],
-      });
+    });
 
     // Initiating the transaction
     return transaction({
