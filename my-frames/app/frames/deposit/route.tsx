@@ -17,10 +17,10 @@ const contractAddress = '0x648eAcAa1C7FEbb06f9b682603fFC6d20b97450b';
 
 export const POST = frames(async (ctx) => {
 
-    const { orderId = 123455, depositAmount = "100" } = ctx.message || {};
+    const { orderId = 2, depositAmount = "100" } = ctx.message || {};
 
 
-    const parsedDepositAmount = 12332234
+    const parsedDepositAmount = 1000000 // 1 USDC
 
 
     // const myCalldata = encodeFunctionData({
@@ -34,16 +34,19 @@ export const POST = frames(async (ctx) => {
     //     transport: http(),
     // });
 
+    const data = encodeFunctionData({
+        abi: XmtpP2PAbi.abi,
+        functionName,
+        args: [orderId, parsedDepositAmount],
+      });
+
     // Initiating the transaction
     return transaction({
         chainId: "eip155:84532", // base sepolia
         method: "eth_sendTransaction",
         params: {
-            abi: XmtpP2PAbi,
             to: contractAddress,
-            functionName: functionName,
-            args: [orderId, parsedDepositAmount],
-            // data: myCalldata,
+            data
         },
     });
 });
