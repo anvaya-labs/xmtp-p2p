@@ -10,7 +10,10 @@ const contractAddress = '0x648eAcAa1C7FEbb06f9b682603fFC6d20b97450b'; // P2P con
 const usdcContractAddress = '0x254Ff46538bf3C581435850F73D2f26011417a1C'; // USDC contract address
 
 export const POST = frames(async (ctx) => {
-    const amount = "1";
+    const url = new URL(ctx.url);
+    const { searchParams } = url;
+
+    const amount = searchParams.get("amount")
     const parsedAmount = ethers.utils.parseUnits(amount, 6);
 
     const data = encodeFunctionData({

@@ -1,25 +1,16 @@
 /* eslint-disable react/jsx-key */
 import { Button } from "frames.js/next";
 import { frames } from "./frames";
-import { supabase } from "../../../xmtp-p2p-bot/src/lib/supabase";
 
 const handleRequest = frames(async (ctx) => {
-    console.log("ctx----------", ctx.message?.transactionId)
     if (ctx.message?.transactionId) {
-
-        // save to supabase
-        const { data, error } = await supabase.from('transactions').insert([
-            {
-                tx_hash: ctx.message.transactionId,
-                amount: 0.1, // get it from the transaction or url params
-                order_id: 1, // get it from the transaction or url params
-            }
-        ])
-
+        console.log("ctx.message.transactionId----------", ctx.message.transactionId)
         return {
             image: (
                 <div tw="bg-purple-800 text-white w-full h-full justify-center items-center flex">
-                    {data ? <span>Transaction saved</span> : <span>Error saving transaction</span>}
+                    <div tw="text-center">
+                        <p tw="text-lg">Transaction ID - {ctx.message.transactionId}.</p>
+                    </div>
                 </div>
             ),
             imageOptions: {
@@ -28,28 +19,24 @@ const handleRequest = frames(async (ctx) => {
             buttons: [
                 <Button
                     action="link"
-                    target={`https://www.onceupon.gg/tx/${ctx.message.transactionId}`}
+                    target={`https://sepolia.basescan.org/tx/${ctx.message.transactionId}`}
                 >
                     View on block explorer
                 </Button>,
+                <Button action="tx" target={`/deposit`}>Deposit</Button>
             ],
         };
     }
 
     return {
-        image: <span>Send 0.1usdt to 0x648eAcAa1C7FEbb06f9b682603fFC6d20b97450b</span>,
+        image: <span>Send 0.1 USDT to 0x648eAcAa1C7FEbb06f9b682603fFC6d20b97450b</span>,
         buttons: [
-            <Button action="tx" target="/allow-spend" >
+            <Button action="tx" target="/allow-spend">
                 Allow Spend
             </Button>,
-
-            <Button action="tx" target={`/deposit`}>Deposit</Button>
-
-
-
         ],
     };
 });
 
 export const GET = handleRequest;
-export const POST = handleRequest
+export const POST = handleRequest;
